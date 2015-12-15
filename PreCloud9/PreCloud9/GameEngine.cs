@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,10 @@ namespace GameStructure
         public String[,] map;
         public int gridSize;
 
-        System.Timers.Timer tm;
+        public  Queue<LifePack> lifePackQueue;
+        public  Queue<Coin> coinQueue;
+        public List<Coin> coinList;
+        public List<LifePack> lifePackList;
 
         public GameEngine()
         {
@@ -31,12 +35,16 @@ namespace GameStructure
             initializeMap();
             Thread listenThread = new Thread(listentoServer);
             listenThread.Start();
-            startTimer(5000);
+            lifePackQueue = new Queue<LifePack>();
+            coinQueue = new Queue<Coin>();
+            coinList = new List<Coin>();
+            lifePackList = new List<LifePack>();
+            //startTimer(5000);
         }
 
         private void initializeMap()
         {
-            this.map = new String[gridSize, gridSize];
+            map = new String[gridSize, gridSize];
             for (int i = 0; i < gridSize; i++)
             {
                 for (int j = 0; j < gridSize; j++)
@@ -56,11 +64,16 @@ namespace GameStructure
             } if (str.StartsWith("L"))
             {
                 LifePack lf = p.createLifePack(str);
-                this.map = markLifePackOnMap(lf, map);
+                markLifePackOnMap(lf, map);
+                lifePackQueue.Enqueue(lf);
+                
             } if (str.StartsWith("C"))
             {
                 Coin coin = p.createCoin(str);
-                this.map = markCoinOnMap(coin, map);
+                markCoinOnMap(coin, map);
+                coinQueue.Enqueue(coin);
+
+                coin.startTimer(coin.Lifetime);
             }
         }
 
@@ -130,35 +143,52 @@ namespace GameStructure
             }
         }
 
-        public void startTimer(int miseconds)
+        public void markLifePackOnMap(LifePack lf,String[,] tempmap)
         {
-            tm = new System.Timers.Timer();
-            tm.Interval = miseconds;
-            tm.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            tm.Enabled = true;
-            tm.Start();
-
+            tempmap[lf.Ycod, lf.Xcod] = "L";
+            Console.WriteLine("After creating a lifepack.. ");
+            //drawMap();
+            this.map = tempmap;
         }
 
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        public void markCoinOnMap(Coin coin, String[,] tempmap)
         {
+            tempmap[coin.Ycod, coin.Xcod] = "C";
+            Console.WriteLine("After creating a Coin.. ");
+            //drawMap();
+            this.map = tempmap;
             
         }
 
-        public String [,] markLifePackOnMap(LifePack lf,String[,] map)
+        public void coinObserver()
         {
-            map[lf.Ycod, lf.Xcod] = "L";
-            Console.WriteLine("After creating a lifepack.. ");
-            //drawMap();
-            return map;
+            Thread thread = new Thread(new ThreadStart(workThreadMethod));
+            thread.Start();
         }
 
-        public String[,] markCoinOnMap(Coin coin, String[,] map)
+        public void workThreadMethod()
         {
-            map[coin.Ycod, coin.Xcod] = "C";
-            Console.WriteLine("After creating a Coin.. ");
-            //drawMap();
-            return map;
+            while (true)
+            {
+                if (coinList.Count > 0)
+                {
+                    for (int i = 0; i < coinList.Count; i++)
+                    {
+                        if (coinList[i].State == false)
+                        {
+                            removeCoinFromMap(coinList[i], this.map);
+                            coinList.Remove(coinList[i]);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void removeCoinFromMap(Coin coin, string[,] tempmap)
+        {
+            tempmap[coin.Ycod, coin.Xcod] = "N";
+            Console.WriteLine(coin.Ycod + " " + coin.Xcod + " " + "removed form string map");
+            this.map = tempmap;
         }
     }
 }

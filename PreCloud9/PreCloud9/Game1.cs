@@ -54,7 +54,7 @@ namespace PreCloud9
             //unitSize = screenWidth / gm.gridSize;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
-            Window.Title = "Cloud 9 games 4.1";
+            Window.Title = "Cloud 9 games alpha 4.2";
             base.Initialize();
         }
 
