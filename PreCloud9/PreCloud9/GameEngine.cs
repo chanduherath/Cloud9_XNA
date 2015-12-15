@@ -39,6 +39,7 @@ namespace GameStructure
             coinQueue = new Queue<Coin>();
             coinList = new List<Coin>();
             lifePackList = new List<LifePack>();
+            coinObserver();
             //startTimer(5000);
         }
 
@@ -71,8 +72,8 @@ namespace GameStructure
             {
                 Coin coin = p.createCoin(str);
                 markCoinOnMap(coin, map);
-                coinQueue.Enqueue(coin);
-
+                //coinQueue.Enqueue(coin);
+                coinList.Add(coin);
                 coin.startTimer(coin.Lifetime);
             }
         }
