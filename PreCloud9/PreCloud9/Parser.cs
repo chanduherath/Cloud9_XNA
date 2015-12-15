@@ -20,7 +20,7 @@ namespace GameStructure
 
             lf.Xcod = Convert.ToInt32(arr[1]);
             lf.Ycod = Convert.ToInt32(arr[2]);
-            lf.Val = Convert.ToInt32(arr[3]);
+            lf.LifeTime = Convert.ToInt32(arr[3]);
 
             return lf;
         }

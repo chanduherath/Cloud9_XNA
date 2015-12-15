@@ -22,8 +22,8 @@ namespace GameStructure
         public String[,] map;
         public int gridSize;
 
-        public  Queue<LifePack> lifePackQueue;
-        public  Queue<Coin> coinQueue;
+        //public  Queue<LifePack> lifePackQueue;
+        //public  Queue<Coin> coinQueue;
         public List<Coin> coinList;
         public List<LifePack> lifePackList;
 
@@ -35,12 +35,12 @@ namespace GameStructure
             initializeMap();
             Thread listenThread = new Thread(listentoServer);
             listenThread.Start();
-            lifePackQueue = new Queue<LifePack>();
-            coinQueue = new Queue<Coin>();
+            //lifePackQueue = new Queue<LifePack>();
+            //coinQueue = new Queue<Coin>();
             coinList = new List<Coin>();
             lifePackList = new List<LifePack>();
             coinObserver();
-            //startTimer(5000);
+            lifePackObserver();
         }
 
         private void initializeMap()
@@ -65,14 +65,15 @@ namespace GameStructure
             } if (str.StartsWith("L"))
             {
                 LifePack lf = p.createLifePack(str);
+                Console.WriteLine("Before marking on map");
                 markLifePackOnMap(lf, map);
-                lifePackQueue.Enqueue(lf);
+                lifePackList.Add(lf);
+                lf.startTimer(lf.LifeTime);
                 
             } if (str.StartsWith("C"))
             {
                 Coin coin = p.createCoin(str);
-                markCoinOnMap(coin, map);
-                //coinQueue.Enqueue(coin);
+                markCoinOnMap(coin, map);        
                 coinList.Add(coin);
                 coin.startTimer(coin.Lifetime);
             }
@@ -167,20 +168,58 @@ namespace GameStructure
             thread.Start();
         }
 
+        public void lifePackObserver()
+        {
+            Thread thread = new Thread(new ThreadStart(detectLifePacks));
+            thread.Start();
+        }
+
+        public void detectLifePacks()
+        {
+            while (true)
+            {
+                try
+                {
+                    if (lifePackList.Count > 0)
+                    {
+                        for (int i = 0; i < lifePackList.Count; i++)
+                        {
+                            if (lifePackList[i].State == false)
+                            {
+                                removeLifePackFromMap(lifePackList[i], this.map);
+                                lifePackList.Remove(lifePackList[i]);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("An exception occured in lifePack Thread");
+                }
+            }
+        }
+
         public void workThreadMethod()
         {
             while (true)
             {
-                if (coinList.Count > 0)
+                try
                 {
-                    for (int i = 0; i < coinList.Count; i++)
+                    if (coinList.Count > 0)
                     {
-                        if (coinList[i].State == false)
+                        for (int i = 0; i < coinList.Count; i++)
                         {
-                            removeCoinFromMap(coinList[i], this.map);
-                            coinList.Remove(coinList[i]);
+                            if (coinList[i].State == false)
+                            {
+                                removeCoinFromMap(coinList[i], this.map);
+                                coinList.Remove(coinList[i]);
+                            }
                         }
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("An Exception occured in Coin Thread");
                 }
             }
         }
@@ -189,6 +228,13 @@ namespace GameStructure
         {
             tempmap[coin.Ycod, coin.Xcod] = "N";
             Console.WriteLine(coin.Ycod + " " + coin.Xcod + " " + "removed form string map");
+            this.map = tempmap;
+        }
+
+        public void removeLifePackFromMap(LifePack lf, string[,] tempmap)
+        {
+            tempmap[lf.Ycod, lf.Xcod] = "N";
+            Console.WriteLine(lf.Ycod + " " + lf.Xcod + " " + "removed form string map");
             this.map = tempmap;
         }
     }
