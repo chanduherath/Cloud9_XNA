@@ -80,6 +80,37 @@ namespace GameStructure
             return myTank;
         }
 
+        private Tank getTankDetails(String str)
+        {
+            Tank tnk = new Tank();
+            char[] delimiters = new char[] { ',', ';' };
+            string[] arr = str.Split(delimiters);
+            tnk.PlayerName = arr[0];
+            tnk.Xcod = Int32.Parse(arr[1]);
+            tnk.Ycod = Int32.Parse(arr[2]);
+            tnk.Direction = Int32.Parse(arr[3]);
+            tnk.Whether_shot = Int32.Parse(arr[4]);
+            tnk.Health = Int32.Parse(arr[5]);
+            tnk.Coins = Int32.Parse(arr[6]);
+            tnk.Points = Int32.Parse(arr[7]);
+
+            return tnk;
+        }
+
+        public List<Tank> getTankList(String str)
+        {
+            List<Tank> tanklist = new List<Tank>();
+            //str = "G:P0;0,0;1;0;100;0;0:P1;0,9;1;0;100;0;0:P2;9,0;3;0;100;0;0:P3;9,9;0;0;100;0;0:8,6,0;9,3,0;1,7,0;7,1,0;6,8,0#";
+            char[] predelimiters = new char[] { ':', '#' };
+            string[] arr = str.Split(predelimiters);
+            for (int i = 1; i < arr.Length - 1; i++)
+            {
+                Tank tnk = getTankDetails(arr[i]);
+                tanklist.Add(tnk);
+            }
+            return tanklist;
+        }
+
 
     }
 }

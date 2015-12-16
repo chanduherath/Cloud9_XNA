@@ -110,7 +110,7 @@ namespace PreCloud9
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            processKeyBoard();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -135,9 +135,17 @@ namespace PreCloud9
 
         private void drawMytank()
         {
-            Vector2 Position1 = new Vector2(gm.gEngine.myTank.Xcod*unitSize + unitSize/2, gm.gEngine.myTank.Ycod*unitSize + unitSize/2);
+            //Vector2 Position1 = new Vector2(gm.gEngine.myTank.Xcod * unitSize + unitSize / 2, gm.gEngine.myTank.Ycod * unitSize + unitSize / 2);
             //spriteBatch.Draw(TankImage, Position, Color.White);
-            spriteBatch.Draw(TankImage, Position1, null, Color.White, 0, new Vector2(TankImage.Width/2, TankImage.Height/2), playerScalling, SpriteEffects.None, 0);
+            //spriteBatch.Draw(TankImage, Position1, null, Color.LightBlue, MathHelper.ToRadians(90 * gm.gEngine.myTank.Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
+            List<Tank> tanklist = gm.gEngine.tankList;
+            Console.WriteLine("Inside draw my Tank method");
+            for (int i = 0; i < tanklist.Count; i++)
+            {
+                Vector2 position = new Vector2(tanklist[i].Xcod * unitSize + unitSize / 2, tanklist[i].Ycod * unitSize + unitSize / 2);
+                spriteBatch.Draw(TankImage, position, null, Color.LightCoral, MathHelper.ToRadians(90 * tanklist[i].Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
+            }
+            
         }
 
         private void drawBackGroundTiles()
@@ -191,6 +199,30 @@ namespace PreCloud9
                         }
                     }
                 }
+            }
+        }
+
+        private void processKeyBoard()
+        {
+            KeyboardState keybState = Keyboard.GetState();
+            if (keybState.IsKeyDown(Keys.Up))
+            {
+                gm.gEngine.con.sendDatatoServer("UP#");
+            }
+            else if (keybState.IsKeyDown(Keys.Right))
+            {
+                gm.gEngine.con.sendDatatoServer("RIGHT#");
+            }
+            else if (keybState.IsKeyDown(Keys.Down))
+            {
+                gm.gEngine.con.sendDatatoServer("DOWN#");
+            }
+            else if (keybState.IsKeyDown(Keys.Left))
+            {
+                gm.gEngine.con.sendDatatoServer("LEFT#");
+            }
+            else if(keybState.IsKeyDown(Keys.Space)){
+                gm.gEngine.con.sendDatatoServer("SHOOT#");
             }
         }
     }
