@@ -15,6 +15,16 @@ namespace PreCloud9
     /// <summary>
     /// This is the main type for your game
     /// </summary>
+    /// 
+    public struct PlayerData
+    {
+        public Vector2 Position;
+        public bool IsAlive;
+        public Color Color;
+        public float Angle;
+        public float Power;
+    }
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -28,10 +38,12 @@ namespace PreCloud9
         Texture2D WaterBox;
         Texture2D CoinBox;
         Texture2D LifePackBox;
+        Texture2D TankImage;
 
         int screenWidth;
         int screenHeight;
         int unitSize;
+        float playerScalling;
 
         public Game1()
         {
@@ -55,6 +67,7 @@ namespace PreCloud9
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             Window.Title = "Cloud 9 games alpha 4.2";
+            playerScalling = 0.5f;
             base.Initialize();
         }
 
@@ -73,6 +86,7 @@ namespace PreCloud9
             WaterBox = Content.Load<Texture2D>("waterXNA");
             LifePackBox = Content.Load<Texture2D>("LifePackXNA");
             CoinBox = Content.Load<Texture2D>("CoinXNA");
+            TankImage = Content.Load<Texture2D>("tank_XNA");
 
             // TODO: use this.Content to load your game content here
         }
@@ -114,8 +128,16 @@ namespace PreCloud9
             spriteBatch.Begin();
             drawBackGroundTiles();
             drawMAP();
+            drawMytank();
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void drawMytank()
+        {
+            Vector2 Position1 = new Vector2(gm.gEngine.myTank.Xcod*unitSize + unitSize/2, gm.gEngine.myTank.Ycod*unitSize + unitSize/2);
+            //spriteBatch.Draw(TankImage, Position, Color.White);
+            spriteBatch.Draw(TankImage, Position1, null, Color.White, 0, new Vector2(TankImage.Width/2, TankImage.Height/2), playerScalling, SpriteEffects.None, 0);
         }
 
         private void drawBackGroundTiles()
