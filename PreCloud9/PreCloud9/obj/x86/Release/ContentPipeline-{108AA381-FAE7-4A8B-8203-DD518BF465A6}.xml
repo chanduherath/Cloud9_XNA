@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\Tile.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\Tile.xnb</Output>
       <Time>2015-12-03T07:23:08+05:30</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\Bricks2XNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\Bricks2XNA.xnb</Output>
       <Time>2015-12-03T09:55:24+05:30</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\StoneXNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\StoneXNA.xnb</Output>
       <Time>2015-12-03T09:55:40+05:30</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\waterXNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\waterXNA.xnb</Output>
       <Time>2015-12-03T09:55:54+05:30</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\CoinXNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\CoinXNA.xnb</Output>
       <Time>2015-12-08T12:07:38+05:30</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\LifePackXNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\LifePackXNA.xnb</Output>
       <Time>2015-12-08T12:07:50+05:30</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\tank_XNA.xnb</Output>
+      <Output>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\tank_XNA.xnb</Output>
       <Time>2015-12-16T12:09:56+05:30</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -69,12 +69,12 @@
       <ContentProjectGUID>{108AA381-FAE7-4A8B-8203-DD518BF465A6}</ContentProjectGUID>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>Reach</TargetProfile>
-      <BuildConfiguration>Debug</BuildConfiguration>
-      <CompressContent>false</CompressContent>
+      <BuildConfiguration>Release</BuildConfiguration>
+      <CompressContent>true</CompressContent>
       <RootDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9Content\</RootDirectory>
       <LoggerRootDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\</LoggerRootDirectory>
-      <IntermediateDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Debug\Content\</OutputDirectory>
+      <IntermediateDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>\\psf\Home\Documents\ProChallenge2-master\PreCloud9\PreCloud9\PreCloud9\bin\x86\Release\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
