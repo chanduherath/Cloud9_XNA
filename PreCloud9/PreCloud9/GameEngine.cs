@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreCloud9;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,13 @@ namespace GameStructure
         //public  Queue<Coin> coinQueue;
         public List<Coin> coinList;
         public List<LifePack> lifePackList;
+        Tank myTank;
 
         public GameEngine()
         {
             this.p = new Parser();
             this.con = new Connection();
+            myTank = new Tank();
             this.gridSize = 10;
             initializeMap();
             Thread listenThread = new Thread(listentoServer);
@@ -60,9 +63,14 @@ namespace GameStructure
             if (str.StartsWith("I"))
             {
                 this.mapList = p.createMapList(str);
+                this.myTank.PlayerName = p.getMyPlayerName(str);
                 markOnMap(mapList);
                 drawMap();
-            } if (str.StartsWith("L"))
+            }if(str.StartsWith("S")){
+                myTank = p.getMydetails(str,myTank.PlayerName);
+
+            }
+            if (str.StartsWith("L"))
             {
                 LifePack lf = p.createLifePack(str);
                 Console.WriteLine("Before marking on map");

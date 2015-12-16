@@ -15,6 +15,16 @@ namespace PreCloud9
     /// <summary>
     /// This is the main type for your game
     /// </summary>
+    /// 
+    public struct PlayerData
+    {
+        public Vector2 Position;
+        public bool IsAlive;
+        public Color Color;
+        public float Angle;
+        public float Power;
+    }
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -28,6 +38,7 @@ namespace PreCloud9
         Texture2D WaterBox;
         Texture2D CoinBox;
         Texture2D LifePackBox;
+        Texture2D TankImage;
 
         int screenWidth;
         int screenHeight;
@@ -73,6 +84,7 @@ namespace PreCloud9
             WaterBox = Content.Load<Texture2D>("waterXNA");
             LifePackBox = Content.Load<Texture2D>("LifePackXNA");
             CoinBox = Content.Load<Texture2D>("CoinXNA");
+            TankImage = Content.Load<Texture2D>("tank_XNA");
 
             // TODO: use this.Content to load your game content here
         }

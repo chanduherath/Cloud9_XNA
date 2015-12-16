@@ -4,3 +4,4 @@ Content\StoneXNA.xnb
 Content\waterXNA.xnb
 Content\CoinXNA.xnb
 Content\LifePackXNA.xnb
+Content\tank_XNA.xnb

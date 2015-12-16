@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreCloud9;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,31 @@ namespace GameStructure
                 mapList.Add(subArray);
             }
             return mapList;
+        }
+
+        public String getMyPlayerName(String str)
+        {
+            return str.Substring(2, 2);
+        }
+
+        public Tank getMydetails(String str,String name)
+        {
+            Tank myTank = new Tank();
+            char[] predelimiters = new char[] { ':', '#' };
+            char[] postdelimiters = new char[] { ',', ';' };
+            string[] arr = str.Split(predelimiters);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].StartsWith(name))
+                {
+                    string[] arr1 = arr[i].Split(postdelimiters);
+                    myTank.Xcod = Int32.Parse(arr1[1]);
+                    myTank.Ycod = Int32.Parse(arr1[2]);
+                    myTank.Direction = Int32.Parse(arr1[3]);
+                }
+            }
+            myTank.PlayerName = name;
+            return myTank;
         }
 
 

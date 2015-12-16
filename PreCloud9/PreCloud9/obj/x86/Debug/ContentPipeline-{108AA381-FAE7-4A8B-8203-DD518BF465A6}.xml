@@ -55,6 +55,15 @@
       <Output>D:\Projects\Cloud9_XNA\Cloud9_XNA\PreCloud9\PreCloud9\bin\x86\Debug\Content\LifePackXNA.xnb</Output>
       <Time>2015-12-15T15:49:33.7102803+05:30</Time>
     </Item>
+    <Item>
+      <Source>tank_XNA.png</Source>
+      <Name>tank_XNA</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Projects\Cloud9_XNA\Cloud9_XNA\PreCloud9\PreCloud9\bin\x86\Debug\Content\tank_XNA.xnb</Output>
+      <Time>2015-12-16T06:51:31.041849+05:30</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{108AA381-FAE7-4A8B-8203-DD518BF465A6}</ContentProjectGUID>
