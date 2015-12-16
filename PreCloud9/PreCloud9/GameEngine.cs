@@ -78,7 +78,7 @@ namespace GameStructure
                 lifePackList.Add(lf);
                 lf.startTimer(lf.LifeTime);
                 
-            } if (str.StartsWith("C"))
+            } if (str.StartsWith("C:"))
             {
                 Coin coin = p.createCoin(str);
                 markCoinOnMap(coin, map);        

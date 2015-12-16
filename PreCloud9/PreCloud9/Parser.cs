@@ -83,6 +83,7 @@ namespace GameStructure
         private Tank getTankDetails(String str)
         {
             Tank tnk = new Tank();
+            Console.WriteLine("One string related to a one tank : " + str);
             char[] delimiters = new char[] { ',', ';' };
             string[] arr = str.Split(delimiters);
             tnk.PlayerName = arr[0];
@@ -103,11 +104,13 @@ namespace GameStructure
             //str = "G:P0;0,0;1;0;100;0;0:P1;0,9;1;0;100;0;0:P2;9,0;3;0;100;0;0:P3;9,9;0;0;100;0;0:8,6,0;9,3,0;1,7,0;7,1,0;6,8,0#";
             char[] predelimiters = new char[] { ':', '#' };
             string[] arr = str.Split(predelimiters);
-            for (int i = 1; i < arr.Length - 1; i++)
+            for (int i = 1; i < arr.Length - 2; i++)
             {
+                
                 Tank tnk = getTankDetails(arr[i]);
                 tanklist.Add(tnk);
             }
+            Console.WriteLine("Number of tanks : " + tanklist.Count);
             return tanklist;
         }
 

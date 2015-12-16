@@ -139,13 +139,11 @@ namespace PreCloud9
             //spriteBatch.Draw(TankImage, Position, Color.White);
             //spriteBatch.Draw(TankImage, Position1, null, Color.LightBlue, MathHelper.ToRadians(90 * gm.gEngine.myTank.Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
             List<Tank> tanklist = gm.gEngine.tankList;
-            Console.WriteLine("Inside draw my Tank method");
             for (int i = 0; i < tanklist.Count; i++)
             {
                 Vector2 position = new Vector2(tanklist[i].Xcod * unitSize + unitSize / 2, tanklist[i].Ycod * unitSize + unitSize / 2);
                 spriteBatch.Draw(TankImage, position, null, Color.LightCoral, MathHelper.ToRadians(90 * tanklist[i].Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
-            }
-            
+            }            
         }
 
         private void drawBackGroundTiles()
