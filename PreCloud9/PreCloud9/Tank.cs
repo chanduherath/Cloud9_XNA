@@ -9,12 +9,6 @@ namespace PreCloud9
     {
         String playerName;
         int xcod;
-
-        public int Xcod
-        {
-            get { return xcod; }
-            set { xcod = value; }
-        }
         int ycod;
         int direction;
 
@@ -22,7 +16,9 @@ namespace PreCloud9
         public Tank()
         {
             this.playerName = "";
-        
+            this.Xcod = 0;
+            this.Ycod = 0;
+            this.Direction = 0;
         }
 
 
@@ -33,7 +29,11 @@ namespace PreCloud9
         }
 
 
-
+        public int Xcod
+        {
+            get { return xcod; }
+            set { xcod = value; }
+        }
 
         public int Ycod
         {

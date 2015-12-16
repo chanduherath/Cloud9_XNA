@@ -27,7 +27,7 @@ namespace GameStructure
         //public  Queue<Coin> coinQueue;
         public List<Coin> coinList;
         public List<LifePack> lifePackList;
-        Tank myTank;
+        public Tank myTank;
 
         public GameEngine()
         {
@@ -68,7 +68,6 @@ namespace GameStructure
                 drawMap();
             }if(str.StartsWith("S")){
                 myTank = p.getMydetails(str,myTank.PlayerName);
-
             }
             if (str.StartsWith("L"))
             {

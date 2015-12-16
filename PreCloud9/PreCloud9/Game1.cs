@@ -43,6 +43,7 @@ namespace PreCloud9
         int screenWidth;
         int screenHeight;
         int unitSize;
+        float playerScalling;
 
         public Game1()
         {
@@ -66,6 +67,7 @@ namespace PreCloud9
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             Window.Title = "Cloud 9 games alpha 4.2";
+            playerScalling = 0.5f;
             base.Initialize();
         }
 
@@ -126,8 +128,16 @@ namespace PreCloud9
             spriteBatch.Begin();
             drawBackGroundTiles();
             drawMAP();
+            drawMytank();
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void drawMytank()
+        {
+            Vector2 Position1 = new Vector2(gm.gEngine.myTank.Xcod*unitSize + unitSize/2, gm.gEngine.myTank.Ycod*unitSize + unitSize/2);
+            //spriteBatch.Draw(TankImage, Position, Color.White);
+            spriteBatch.Draw(TankImage, Position1, null, Color.White, 0, new Vector2(TankImage.Width/2, TankImage.Height/2), playerScalling, SpriteEffects.None, 0);
         }
 
         private void drawBackGroundTiles()
