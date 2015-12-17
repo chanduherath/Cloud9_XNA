@@ -17,16 +17,14 @@ namespace GameStructure
         public static TcpListener listener;
         public static NetworkStream incommingStream;
         private Parser p;
-        private Connection con;
+        public Connection con;
 
         List<String[]> mapList = new List<String[]>();
         public String[,] map;
         public int gridSize;
-
-        //public  Queue<LifePack> lifePackQueue;
-        //public  Queue<Coin> coinQueue;
         public List<Coin> coinList;
         public List<LifePack> lifePackList;
+        public List<Tank> tankList;
         public Tank myTank;
 
         public GameEngine()
@@ -38,10 +36,9 @@ namespace GameStructure
             initializeMap();
             Thread listenThread = new Thread(listentoServer);
             listenThread.Start();
-            //lifePackQueue = new Queue<LifePack>();
-            //coinQueue = new Queue<Coin>();
             coinList = new List<Coin>();
             lifePackList = new List<LifePack>();
+            tankList = new List<Tank>();
             coinObserver();
             lifePackObserver();
         }
@@ -69,6 +66,10 @@ namespace GameStructure
             }if(str.StartsWith("S")){
                 myTank = p.getMydetails(str,myTank.PlayerName);
             }
+            if (str.StartsWith("G"))
+            {
+                this.tankList = p.getTankList(str);
+            }
             if (str.StartsWith("L"))
             {
                 LifePack lf = p.createLifePack(str);
@@ -77,7 +78,7 @@ namespace GameStructure
                 lifePackList.Add(lf);
                 lf.startTimer(lf.LifeTime);
                 
-            } if (str.StartsWith("C"))
+            } if (str.StartsWith("C:"))
             {
                 Coin coin = p.createCoin(str);
                 markCoinOnMap(coin, map);        

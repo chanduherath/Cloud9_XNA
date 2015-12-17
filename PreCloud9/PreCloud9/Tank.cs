@@ -11,6 +11,14 @@ namespace PreCloud9
         int xcod;
         int ycod;
         int direction;
+        int whether_shot;
+
+       
+        int health;
+
+        int coins;
+
+        int points;
 
         
         public Tank()
@@ -19,6 +27,10 @@ namespace PreCloud9
             this.Xcod = 0;
             this.Ycod = 0;
             this.Direction = 0;
+            this.Whether_shot = 0;
+            this.Health = 0;
+            this.Coins = 0;
+            this.Points = 0;
         }
 
 
@@ -46,6 +58,30 @@ namespace PreCloud9
         {
             get { return direction; }
             set { direction = value; }
+        }
+
+        public int Whether_shot
+        {
+            get { return whether_shot; }
+            set { whether_shot = value; }
+        }
+
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
+
+        public int Coins
+        {
+            get { return coins; }
+            set { coins = value; }
+        }
+
+        public int Points
+        {
+            get { return points; }
+            set { points = value; }
         }
 
         
