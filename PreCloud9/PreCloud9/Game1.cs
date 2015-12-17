@@ -44,6 +44,7 @@ namespace PreCloud9
         int screenHeight;
         int unitSize;
         float playerScalling;
+        Color[] playerColors = new Color[5];
 
         public Game1()
         {
@@ -87,7 +88,7 @@ namespace PreCloud9
             LifePackBox = Content.Load<Texture2D>("LifePackXNA");
             CoinBox = Content.Load<Texture2D>("CoinXNA");
             TankImage = Content.Load<Texture2D>("tank_XNA");
-
+            initializeColors();
             // TODO: use this.Content to load your game content here
         }
 
@@ -142,7 +143,7 @@ namespace PreCloud9
             for (int i = 0; i < tanklist.Count; i++)
             {
                 Vector2 position = new Vector2(tanklist[i].Xcod * unitSize + unitSize / 2, tanklist[i].Ycod * unitSize + unitSize / 2);
-                spriteBatch.Draw(TankImage, position, null, Color.LightCoral, MathHelper.ToRadians(90 * tanklist[i].Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
+                spriteBatch.Draw(TankImage, position, null, playerColors[i], MathHelper.ToRadians(90 * tanklist[i].Direction), new Vector2(TankImage.Width / 2, TankImage.Height / 2), playerScalling, SpriteEffects.None, 0);
             }            
         }
 
@@ -222,6 +223,15 @@ namespace PreCloud9
             else if(keybState.IsKeyDown(Keys.Space)){
                 gm.gEngine.con.sendDatatoServer("SHOOT#");
             }
+        }
+
+        private void initializeColors()
+        {
+            this.playerColors[0] = Color.LightGreen;
+            this.playerColors[1] = Color.LightPink;
+            this.playerColors[2] = Color.Gold;
+            this.playerColors[3] = Color.LightSkyBlue;
+            this.playerColors[4] = Color.LightSalmon;
         }
     }
 }

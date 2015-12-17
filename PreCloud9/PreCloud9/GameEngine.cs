@@ -26,6 +26,7 @@ namespace GameStructure
         public List<LifePack> lifePackList;
         public List<Tank> tankList;
         public Tank myTank;
+    
 
         public GameEngine()
         {
@@ -38,7 +39,7 @@ namespace GameStructure
             listenThread.Start();
             coinList = new List<Coin>();
             lifePackList = new List<LifePack>();
-            tankList = new List<Tank>();
+            tankList = new List<Tank>();          
             coinObserver();
             lifePackObserver();
         }
@@ -69,6 +70,7 @@ namespace GameStructure
             if (str.StartsWith("G"))
             {
                 this.tankList = p.getTankList(str);
+                this.myTank = updateMyTankDetails();
             }
             if (str.StartsWith("L"))
             {
@@ -244,6 +246,26 @@ namespace GameStructure
             tempmap[lf.Ycod, lf.Xcod] = "N";
             Console.WriteLine(lf.Ycod + " " + lf.Xcod + " " + "removed form string map");
             this.map = tempmap;
+        }
+
+        private Tank updateMyTankDetails()
+        {
+            Tank myTnk = this.myTank;
+            List<Tank> tlist = this.tankList;
+            for (int i = 0; i < tlist.Count; i++)
+            {
+                if (myTnk.PlayerName.Equals(tlist[i].PlayerName))
+                {
+                    myTnk.Xcod = tlist[i].Xcod;
+                    myTnk.Ycod = tlist[i].Ycod;
+                    myTnk.Direction = tlist[i].Direction;
+                    myTnk.Whether_shot = tlist[i].Whether_shot;
+                    myTnk.Health = tlist[i].Health;
+                    myTnk.Coins = tlist[i].Coins;
+                    myTnk.Points = tlist[i].Points;
+                }
+            }
+            return myTnk;
         }
     }
 }
